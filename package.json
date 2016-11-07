@@ -1,0 +1,7 @@
+{
+  "name": "stats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Andrey Kucherenko <andrey@kucherenko.org>",
+  "license": "MIT"
+}
