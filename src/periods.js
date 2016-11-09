@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import
     {PERIOD_SECOND, PERIOD_MINUTE, PERIOD_HOUR, PERIOD_DAY, PERIOD_WEEK, PERIOD_MONTH, PERIOD_YEAR}
-from '../src/constants';
+from './constants';
 
 export function childPeriod(period) {
     let subPeriod = null;

@@ -2,6 +2,8 @@ src/
 tests/
 coverage/
 .nyc_output/
+.idea/
+.babelrc
 
 yarn.lock
 examples
