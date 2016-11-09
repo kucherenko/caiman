@@ -1,5 +1,5 @@
 #Caiman - statistic alligator
-
+![Caiman - times series library](https://raw.githubusercontent.com/kucherenko/caiman/master/caiman.svg)
 ##Times series data library.
 
 Library helps organize time series data. Caiman can be used for IoT systems,
