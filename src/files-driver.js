@@ -1,5 +1,5 @@
-import {ShellString, cat} from 'shelljs';
-import {join} from 'path';
+import {ShellString, cat, mkdir, test} from 'shelljs';
+import {join, dirname} from 'path';
 import {bunchOfKeys, parentPeriod, startOfPeriod} from './periods';
 
 
@@ -15,15 +15,33 @@ export class FilesDriver {
     }
 
     save(type, date, period, data, strategy) {
-        ShellString(JSON.stringify(data)).to(
-            this.getPath(type, date, period)
+        let collection = this.getCollection(type, date, parentPeriod(period)),
+            startDate = startOfPeriod(date, period).format(),
+            oldData = (collection && collection[startDate]) ? collection[startDate] : null,
+            pathToFile = this.getPath(type, date, parentPeriod(period));
+
+        if ( typeof(strategy) === 'function') {
+            data = strategy(data, oldData);
+        }
+        if (!test('-d', dirname(pathToFile))){
+            mkdir('-p', dirname(pathToFile));
+        }
+        collection[startDate] = data;
+        ShellString(JSON.stringify(collection)).to(
+            pathToFile
         );
     }
 
     getCollection(type, date, period) {
-        let collection = cat(this.getPath(type, date, period));
-        if (collection){
-            collection = JSON.stringify(collection);
+        let pathToFile = this.getPath(type, date, period);
+        if (!test('-f', pathToFile)){
+            return {};
+        }
+        let collection = cat(pathToFile);
+        if (collection.length > 0) {
+            collection = JSON.parse(collection);
+        } else {
+            collection = {};
         }
         return collection;
     }

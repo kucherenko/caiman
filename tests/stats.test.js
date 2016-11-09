@@ -10,7 +10,7 @@ from '../src/constants';
 import Stats from '../src/stats';
 
 describe("Stats", () => {
-    let driver, sut, type, date, data;
+    let driver, sut, type, date, data, options;
 
     beforeEach(() => {
         type = "test_type";
@@ -22,7 +22,8 @@ describe("Stats", () => {
             getCollection: env.stub().returns([data])
         };
 
-        sut = new Stats(type, driver);
+        sut = new Stats(type, {driver: {type: "files"}});
+        sut.driver = driver;
     });
 
     context('Save', () => {

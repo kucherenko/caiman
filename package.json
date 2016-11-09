@@ -1,6 +1,7 @@
 {
-  "name": "stats",
-  "version": "1.0.0",
+  "name": "caiman",
+  "version": "0.1.0",
+  "description": "Times series data library",
   "main": "index.js",
   "author": "Andrey Kucherenko <andrey@kucherenko.org>",
   "license": "MIT",
@@ -11,15 +12,17 @@
     "test": "mocha --require babel-core/register tests/"
   },
   "dependencies": {
+    "moment": "^2.15.2",
+    "shelljs": "^0.7.5"
+  },
+  "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "mocha": "^3.1.2",
-    "moment": "^2.15.2",
     "nyc": "^8.4.0",
     "proxyquire": "^1.7.10",
-    "shelljs": "^0.7.5",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
   }
