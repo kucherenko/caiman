@@ -1,6 +1,6 @@
 {
   "name": "caiman",
-  "version": "0.1.1`",
+  "version": "0.1.1",
   "description": "Times series data library",
   "main": "index.js",
   "author": "Andrey Kucherenko <andrey@kucherenko.org>",
