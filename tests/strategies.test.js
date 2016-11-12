@@ -28,7 +28,10 @@ describe("Strategies", () => {
     context('averages', () => {
 
         it('should add new data to old data', () => {
-            averages(3, 7).should.equal(5);
+            averages(3, {n:1, average: 7}).should.deep.equal({
+                n: 2,
+                average: 5
+            });
         });
 
     });
