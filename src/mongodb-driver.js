@@ -10,7 +10,7 @@ export class MongoDbDriver {
 
     constructor(options) {
         this.options = options;
-        this.collection = options['collection'] ? options['collection'] : 'caiman';
+        //this.collection = options['collection'] ? options['collection'] : 'caiman';
         this.db = this.options['db'] ? this.options['db'] : _connect(this.options);
     }
 
@@ -23,30 +23,37 @@ export class MongoDbDriver {
 
     save(type, date, period, data, strategy) {
         let dateKey = this._getDateKey(type, date, parentPeriod(period)),
-            startDate = startOfPeriod(date, period).format();
-        this.getOne(type, date, parentPeriod(period)).then((err, doc) => {
-            if ( typeof(strategy) === 'function') {
-                data = strategy(data, doc);
+            startDate = startOfPeriod(date, period).format(),
+            collection = period.toString();
+
+
+        this.db.collection(period).findOne({[dateKey]: {'$exists': true}}, (err, doc) => {
+            if (err) {
+                console.log(err);
+            }
+
+            console.log(doc);
+
+            if (typeof(strategy) === 'function') {
+                data = strategy(data, doc ? doc[dateKey][startDate]: {});
             }
             if (!doc) {
-                this.db.collection(this.collection).save()
+                this.db.collection(collection).insertOne({[dateKey]: {[startDate]: data}});
+            } else {
+
+                this.db.collection(collection).findOneAndUpdate({[dateKey]: {'$exists': true}},
+                    {$set: {[dateKey]: {[startDate]: data}}});
             }
-            this.db.collection(this.collection).findOneAndUpdate({dateKey, startDate}
-                , {$set: data});
+
+
         });
     }
 
     getCollection(type, date, period) {
         let dateKey = this._getDateKey(type, date, period),
-            startDate = startOfPeriod(date, period).toString();
-        return this.db.collection(this.collection).find({dateKey, startDate}).sort({startDate: 1});
+            startDate = startOfPeriod(date, period).toString(),
+            collection = period.toString();
+        return this.db.collection(collection).find({[dateKey]: {'$exists': true}});
     }
 
-
-    getOne(type, date, period) {
-        let dateKey = this._getDateKey(type, date, period),
-            startDate = startOfPeriod(date, period).toString();
-        // console.log(this.db);
-        return this.db.collection(this.collection).findOne({dateKey, startDate});
-    }
 }
