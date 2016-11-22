@@ -31,12 +31,14 @@ export class MongoDbDriver {
                 data = strategy(data, doc ? doc[dateKey] : {});
             }
             if (!doc) {
-                this.db.collection(this.collection).insertOne({period: period, [dateKey]: data});
+                this.db.collection(this.collection).insertOne({
+                    period: period, startDate: startDate, [dateKey]: data
+                });
 
             } else {
 
                 this.db.collection(this.collection).findOneAndUpdate({period: period, [dateKey]: {'$exists': true}},
-                    {$set: {period: period, [dateKey]: data}});
+                    {$set: {period: period, startDate: startDate, [dateKey]: data}});
             }
 
 
