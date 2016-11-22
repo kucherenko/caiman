@@ -63,23 +63,6 @@ describe("Driver: MongoDb", () => {
         });
     });
 
-    context("Get One Record", () => {
-        let dateKey, startDate;
-        beforeEach(() => {
-            db.caiman = {
-                findOne: env.stub()
-            };
-            sut = new MongoDbDriver({db})
-            dateKey = 'bunch_of_keys/test';
-            startDate = date.startOf(PERIOD_MONTH).toString();
-        });
-
-        it('should get record by dateKey and start of period', () => {
-            sut.getOne(type, date, PERIOD_MONTH);
-            db.caiman.findOne.should.have.been.calledWith({dateKey, startDate});
-        });
-    });
-
     context("Get Collection", () => {
         let dateKey, startDate;
         beforeEach(() => {
