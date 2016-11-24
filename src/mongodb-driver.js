@@ -1,16 +1,12 @@
 import {bunchOfKeys, parentPeriod, startOfPeriod} from './periods';
 import {MongoClient} from 'mongodb';
 
-async function _connect(options) {
-    return await MongoClient.connect(options.url);
-}
-
 export class MongoDbDriver {
 
     constructor(options) {
         this.options = options;
         this.collection = options['collection'] ? options['collection'] : 'caiman';
-        this.db = this.options['db'] ? this.options['db'] : _connect(this.options);
+        this.db = this.options['db'];
         this._ensureIndex();
     }
 

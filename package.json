@@ -14,8 +14,7 @@
   "dependencies": {
     "moment": "^2.15.2",
     "mongodb": "^2.2.11",
-    "shelljs": "^0.7.5",
-    "yarn": "^0.17.8"
+    "shelljs": "^0.7.5"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -32,6 +31,8 @@
     "nyc": "^8.4.0",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "yarn": "^0.17.8"
+    
   }
 }
