@@ -1,6 +1,6 @@
 {
   "name": "caiman",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Times series data library",
   "main": "index.js",
   "author": "Andrey Kucherenko <andrey@kucherenko.org>",
@@ -14,7 +14,8 @@
   "dependencies": {
     "moment": "^2.15.2",
     "mongodb": "^2.2.11",
-    "shelljs": "^0.7.5"
+    "shelljs": "^0.7.5",
+    "yarn": "^0.17.8"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
