@@ -22,5 +22,14 @@ MongoClient.connect("mongodb://127.0.0.1:27017/stats", (err, db) => {
         stat2.save(currentDate, periods, Math.random() * 100, 'averages');
     }, 500);
 
-});
+    setInterval(() => {
+        let currentDate = new Date();
+        let st = stat.getCollection(currentDate, 'hour');
+        let st2 = stat2.getCollection(currentDate, 'hour');
 
+        st.toArray((err, doc) => {
+          console.log(doc)
+        });
+    }, 1000);
+
+});

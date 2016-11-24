@@ -25,30 +25,29 @@ export class MongoDbDriver {
         let dateKey = this._getDateKey(type, date, parentPeriod(period)),
             startDate = startOfPeriod(date, period).format();
 
-        this.db.collection(this.collection).findOne({period: period, dateKey: dateKey}).then(function (doc) {
+        this.db.collection(this.collection).findOne({period: period, dateKey: dateKey}, (err, doc) => {
             if (typeof(strategy) === 'function') {
                 data = strategy(data, doc ? doc.data : {});
             }
             if (!doc) {
                 this.db.collection(this.collection).insertOne({
-                    period: period, startDate: startDate, dateKey: dateKey, data: data
+                    period: parentPeriod(period), startDate, dateKey, data
                 });
 
             } else {
-                this.db.collection(this.collection).findOneAndUpdate({period: period, dateKey: dateKey},
-                    {$set: {data: data}});
+                this.db.collection(this.collection).findOneAndUpdate({period: parentPeriod(period), dateKey},
+                    {$set: {data}});
             }
         });
     }
 
     getOne(type, date, period) {
         let dateKey = this._getDateKey(type, date, period);
-        return this.db.collection(this.collection).findOne({period: period, dateKey: dateKey});
+        return this.db.collection(this.collection).findOne({period, dateKey});
     }
 
     getCollection(type, date, period) {
         let dateKey = this._getDateKey(type, date, period);
-        return this.db.collection(this.collection).find({period: period, dateKey: dateKey});
+        return this.db.collection(this.collection).find({period, dateKey});
     }
-
 }
