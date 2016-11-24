@@ -1,4 +1,5 @@
 import {FilesDriver} from './files-driver';
+import {MongoDbDriver} from './mongodb-driver';
 
 import * as strategies from './strategies';
 
@@ -14,6 +15,9 @@ export default class Stats {
         switch (driver.type) {
             case "files":
                 this.driver = new FilesDriver(driver.options);
+                break;
+            case "mongodb":
+                this.driver = new MongoDbDriver(driver.options);
                 break;
             default:
                 throw new Error('options should have supported driver')
