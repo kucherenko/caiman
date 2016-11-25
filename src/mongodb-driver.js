@@ -25,7 +25,7 @@ export class MongoDbDriver {
         let dateKey = this._getDateKey(type, date, parentPeriod(period)),
             startDate = startOfPeriod(date, period).format();
 
-        this.db.collection(this.collection).findOne({period: period, dateKey: dateKey}).then(function (doc) {
+        this.db.collection(this.collection).findOne({period: period, dateKey: dateKey}, (err, doc) => {
             if (typeof(strategy) === 'function') {
                 data = strategy(data, doc ? doc.data : {});
             }
