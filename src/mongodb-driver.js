@@ -22,20 +22,21 @@ export class MongoDbDriver {
 
 
     save(type, date, period, data, strategy) {
-        let dateKey = this._getDateKey(type, date, parentPeriod(period)),
+        let originPeriod = parentPeriod(period),
+            dateKey = this._getDateKey(type, date, originPeriod),
             startDate = startOfPeriod(date, period).format();
 
-        this.db.collection(this.collection).findOne({period: period, dateKey: dateKey}, (err, doc) => {
+        this.db.collection(this.collection).findOne({period: originPeriod, dateKey: dateKey}, (err, doc) => {
             if (typeof(strategy) === 'function') {
                 data = strategy(data, doc ? doc.data : {});
             }
             if (!doc) {
                 this.db.collection(this.collection).insertOne({
-                    period: period, startDate: startDate, dateKey: dateKey, data: data
+                    period: originPeriod, startDate: startDate, dateKey: dateKey, data: data
                 });
 
             } else {
-                this.db.collection(this.collection).findOneAndUpdate({period: period, dateKey: dateKey},
+                this.db.collection(this.collection).findOneAndUpdate({period: originPeriod, dateKey: dateKey},
                     {$set: {data: data}});
             }
         });
