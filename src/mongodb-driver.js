@@ -11,7 +11,7 @@ export class MongoDbDriver {
     }
 
     _ensureIndex() {
-        this.db.collection(this.collection).createIndex({period: 1, dateKey: 1});
+        this.db.collection(this.collection).createIndex({period: 1, dateKey: 1, startDate: 1 });
     }
 
     _getDateKey(type, date, period) {
@@ -24,7 +24,7 @@ export class MongoDbDriver {
     save(type, date, period, data, strategy) {
         let originPeriod = parentPeriod(period),
             dateKey = this._getDateKey(type, date, originPeriod),
-            startDate = startOfPeriod(date, period).format();
+            startDate = startOfPeriod(date, period).toDate();
 
         this.db.collection(this.collection).findOne({period: originPeriod, dateKey: dateKey}, (err, doc) => {
             if (typeof(strategy) === 'function') {
@@ -48,8 +48,13 @@ export class MongoDbDriver {
     }
 
     getCollection(type, date, period) {
-        let dateKey = this._getDateKey(type, date, period);
-        return this.db.collection(this.collection).find({period: period, dateKey: dateKey});
+        return this.db.collection(this.collection).find({
+            period: period,
+            startDate: {
+                $gte: date
+            },
+            dateKey: new RegExp(type + '\\b')
+        }).sort({ startDate: 1 });
     }
 
 }
