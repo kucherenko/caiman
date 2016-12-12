@@ -1,6 +1,6 @@
 {
   "name": "caiman",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Times series data library",
   "main": "index.js",
   "author": "Andrey Kucherenko <andrey@kucherenko.org>",
@@ -33,6 +33,5 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "yarn": "^0.17.8"
-    
   }
 }
