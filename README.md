@@ -1,17 +1,17 @@
-#Caiman - statistic alligator
+# Caiman - statistic alligator
 ![Caiman - times series library](https://rawgit.com/kucherenko/caiman/master/caiman.svg)
 ##Times series data library.
 
 Library helps organize time series data. Caiman can be used for IoT systems,
 stock data, different type of statistics, etc. As database caiman can use file-based database.
 
-###Installation
+### Installation
 
 ```
 npm install caiman --save
 ```
 
-###Usage
+### Usage
 ```
 import {Caiman} from caiman
 
