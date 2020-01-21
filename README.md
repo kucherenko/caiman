@@ -12,7 +12,8 @@ npm install caiman --save
 ```
 
 ### Usage
-```
+
+```javascript
 import {Caiman} from caiman
 
 const options = {
@@ -50,16 +51,16 @@ console.log(stat.getCollection(currentDate, 'minute'));
 
 ```
 
-###Run tests
+### Run tests
 ```
 npm test
 ```
-###TODO
+### TODO
  - MongoDB support
  - Redis suport
  - Add CI
  - Add badges
  
-###Licence 
+### Licence 
 
 MIT
