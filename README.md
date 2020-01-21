@@ -11,10 +11,16 @@ stock data, different type of statistics, etc. As database caiman can use file-b
 npm install caiman --save
 ```
 
+or
+
+```
+yarn add caiman --save
+```
+
 ### Usage
 
 ```javascript
-import {Caiman} from caiman
+import {Caiman} from caiman;
 
 const options = {
     driver: {
@@ -53,11 +59,10 @@ console.log(stat.getCollection(currentDate, 'minute'));
 
 ### Run tests
 ```
-npm test
+yarn test
 ```
 ### TODO
- - MongoDB support
- - Redis suport
+ - Redis support
  - Add CI
  - Add badges
  
