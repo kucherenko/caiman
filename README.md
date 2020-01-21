@@ -1,6 +1,6 @@
 # Caiman - statistic alligator
 ![Caiman - times series library](https://rawgit.com/kucherenko/caiman/master/caiman.svg)
-##Times series data library.
+## Times series data library.
 
 Library helps organize time series data. Caiman can be used for IoT systems,
 stock data, different type of statistics, etc. As database caiman can use file-based database.
