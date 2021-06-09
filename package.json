@@ -12,25 +12,26 @@
     "test": "mocha --require babel-core/register tests/"
   },
   "dependencies": {
-    "moment": "^2.15.2",
-    "mongodb": "^3.1.13",
-    "shelljs": "^0.7.5"
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.9",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "babel-cli": "^6.26.0",
     "babel-plugin-async-to-promises": "^1.0.5",
     "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
-    "babel-plugin-transform-regenerator": "^6.16.1",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-3": "^6.17.0",
-    "chai": "^3.5.0",
-    "mocha": "^3.1.2",
-    "nyc": "^8.4.0",
-    "proxyquire": "^1.7.10",
-    "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "chai": "^4.3.4",
+    "mocha": "^9.0.0",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^11.1.1",
+    "sinon-chai": "^3.7.0",
+    "yarn-upgrade-all": "^0.5.4"
   }
 }

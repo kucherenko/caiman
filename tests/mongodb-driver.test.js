@@ -7,7 +7,7 @@ import {
     PERIOD_MONTH
 } from '../src/constants';
 
-describe("Driver: MongoDb", () => {
+describe.skip("Driver: MongoDb", () => {
     let sut,
         db,
         url,
